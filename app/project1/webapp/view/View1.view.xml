@@ -1,0 +1,36 @@
+<mvc:View xmlns:uxap="sap.uxap" controllerName="com.app.project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    
+    <!-- <Page class="background">
+
+    
+    
+    </Page> -->
+
+    <uxap:ObjectPageLayout id="page1">
+    <uxap:headerTitle>
+    
+    <uxap:ObjectPageDynamicHeaderTitle >
+       <uxap:expandedHeading>
+    
+
+       
+       						
+					<Title text="{i18n>hometitle}" wrapping="true"/>
+                   
+				</uxap:expandedHeading>
+
+                <!-- <Avatar src="{./images/download.jpg}"  class ="sapUiTinyMarginEnd"/>  -->
+                <uxap:actions>
+                <Button text="Login" icon="sap-icon://visits" type="Emphasized" press="onLogin" />
+                <Button text="Sign up" icon="sap-icon://add-employee" type="Emphasized" press="onSignup"/>
+                </uxap:actions>
+
+    </uxap:ObjectPageDynamicHeaderTitle>
+    
+    </uxap:headerTitle>
+    
+    </uxap:ObjectPageLayout>
+
+</mvc:View>

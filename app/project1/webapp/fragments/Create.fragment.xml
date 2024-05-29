@@ -1,0 +1,86 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m"
+>
+    <Dialog
+        id="dialog1"
+        resizable="true"
+        draggable="true"
+        contentWidth="30%"
+        title="Add Books"
+    >
+   
+        <beginButton>
+            <Button
+                id="idConfirmButton"
+                text="Confirm"
+                press="onConfirm"
+                type="Success"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                id="idCancel2Button"
+                text="Cancel"
+                press="onCancelDialog2"
+                type="Negative"
+            />
+        </endButton>
+   
+        <content>
+            <form:SimpleForm
+                id="idBookDetailsForm"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false"
+            >
+                <Label
+                    id="idtitleLabel"
+                    text="Title"
+                />
+                <Input
+                    id="idtitleInput"
+                    value="{localModel>/title}"
+                />
+                <Label
+                    id="idAuthor"
+                    text="Author"
+                />
+                <Input 
+                    id="idAuthorInput"
+                    value="{localModel>/author}"
+                />
+                <Label
+                    id="idISBNLabel"
+                    text="ISBN"
+                />
+                <Input
+                    id="idISBNInput"
+                    value="{localModel>/ISBN}"
+                />
+                <Label
+                    id="idQuantity"
+                    text="Quantity"
+                />
+                <Input 
+                    id="idQuantityInput"
+                    value="{localModel>/quantity}"
+                />
+             
+            </form:SimpleForm>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>
