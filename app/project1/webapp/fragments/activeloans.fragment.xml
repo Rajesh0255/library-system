@@ -13,27 +13,35 @@
         contentHeight="85%"
         title="Active Loans"
     >
+    <customHeader>
+            <Bar>
+            <contentLeft>
+            <Text text="Issue Books"></Text>
+            </contentLeft>
+                <contentRight>
+                 <Button
+                            id="idAddButton"
+                            text="ClearLoans"
+                            press="onClearLoans"
+                        />
+                    <Button
+                        id="idCloseButton"
+                        icon="sap-icon://sys-cancel"
+                        press="onCloseActiveLoans"
+                        type="Reject"
+                    />
+                    
+                </contentRight>
+            </Bar>
+        </customHeader>
         <content>
             <Table
                 id="myTable"
                 inset="false"
                 items="{/bookloans}"
+                mode="MultiSelect"
             >
-                <headerToolbar>
-                    <Toolbar id="idToolBar">
-                        <ToolbarSpacer id="idSpacer" />
-                        <Button
-                            id="idAddButton"
-                            text="Issue"
-                            press="onAdd"
-                        />
-                        <Button
-                            id="idCloseButton"
-                            text="close"
-                            press="onCloseActiveLoans"
-                        />
-                    </Toolbar>
-                </headerToolbar>
+               
                 <columns>
                     <Column id="idcol1">
                         <Text
@@ -53,6 +61,12 @@
                             text="Book Name"
                         />
                     </Column>
+                    <Column id="idcol8" visible="false">
+                        <Text
+                            id="idBookQuantity"
+                            text="Avalable Quantity"
+                        />
+                    </Column>
                     <Column id="idcol5">
                         <Text
                             id="idIssueddate"
@@ -65,21 +79,26 @@
                             text="Due Date"
                         />
                     </Column>
+                   
                 </columns>
                 <items>
                     <ColumnListItem id="idColListItems">
                         <cells>
                             <Text
                                 id="idUserIdValue"
-                                text="{username}"
+                                text="{user/username}"
                             />
                             <Text
                                 id="idNameValue"
-                                text="{name}"
+                                text="{user/name}"
                             />
                             <Text
                                 id="idBookNameValue"
                                 text="{book/title}"
+                            />
+                            <Text
+                                id="idBookAQuantyValue"
+                                text="{book/Aquantity}"
                             />
                             <Text
                                 id="idIssuseddateValue"
@@ -89,6 +108,7 @@
                                 id="idDueDateValue"
                                 text="{returndate}"
                             />
+                            
                             
                         </cells>
                     </ColumnListItem>

@@ -23,7 +23,7 @@
 
                 <!-- <Avatar src="{./images/download.jpg}"  class ="sapUiTinyMarginEnd"/>  -->
                 <uxap:actions>
-                <Button text="Login" icon="sap-icon://visits" type="Emphasized" press="onLogin" />
+                <Button text="Login" icon="sap-icon://visits" type="Emphasized" press="onLogin"  />
                 <Button text="Sign up" icon="sap-icon://add-employee" type="Emphasized" press="onSignup"/>
                 </uxap:actions>
 

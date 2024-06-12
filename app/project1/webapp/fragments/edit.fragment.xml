@@ -4,33 +4,33 @@
     xmlns="sap.m"
 >
     <Dialog
-        id="dialog1"
+        id="Edit"
         resizable="true"
         draggable="true"
         contentWidth="30%"
-        title="logIn"
+        title="Edit Books"
     >
    
         <beginButton>
             <Button
-                id="idCreateButton"
-                text="Signin"
-                press="onSignin"
+                id="idSaveButton"
+                text="Save"
+                press="onSave"
                 type="Success"
             />
         </beginButton>
         <endButton>
             <Button
-                id="idCancelButton"
+                id="idCancelEditButton"
                 text="Cancel"
-                press="onCloseDialog"
+                press="onCancelEdit"
                 type="Negative"
             />
         </endButton>
    
         <content>
             <form:SimpleForm
-                id="idBookDetailsForm"
+                id="idBookDetailsEdit"
                 editable="true"
                 layout="ResponsiveGridLayout"
                 labelSpanXL="3"
@@ -48,26 +48,36 @@
                 singleContainerFullSize="false"
             >
                 <Label
-                    id="idUsernameLabel"
-                    text="Username"
+                    id="idtitleLabelEdit"
+                    text="Title"
                 />
                 <Input
-                    id="idUsernameInput"
-                    value=""
-                    required="true" 
-                    valueState="None"
-                    valueStateText="Please enter your username"
+                    id="idtitleInputEdit"
+                    value="{newBookModel>/title}"
                 />
                 <Label
-                    id="idPassword"
-                    text="Password"
+                    id="idAuthorEdit"
+                    text="Author"
                 />
-                <Input type="Password"
-                    id="idPasswordInput"
-                    value=""
-                    required="true" 
-                    valueState="None"
-                    valueStateText="Please enter your password"
+                <Input 
+                    id="idAuthorInputEdit"
+                    value="{newBookModel>/author}"
+                />
+                <Label
+                    id="idISBNLabelEdit"
+                    text="ISBN"
+                />
+                <Input
+                    id="idISBNInputEdit"
+                    value="{newBookModel>/ISBN}"
+                />
+                <Label
+                    id="idQuantityEdit"
+                    text="Quantity"
+                />
+                <Input 
+                    id="idQuantityInputEdit"
+                    value="{newBookModel>/quantity}"
                 />
              
             </form:SimpleForm>

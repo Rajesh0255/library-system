@@ -1,0 +1,59 @@
+<ActionSheet id="actionSheet"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:m="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:ui5="sap.ui.webc.main"
+	core:require="{ MessageToast: 'sap/m/MessageToast' }"
+	title="Choose Your Action"
+	showCancelButton="true"
+	placement="Bottom">
+    
+	<NotificationList>
+            <layoutData>
+                <FlexItemData maxWidth="600px" />
+            </layoutData>
+            <NotificationListGroup
+               id="Notification1"
+                title="BookRequest"
+                showCloseButton="false"
+                close="onItemClose" 
+                
+                items="{path: '/IssueBooks', parameters:{ $count : true}}"
+                    press="onListItemPress" >
+                 
+                <buttons>
+                    <Button text="Accept All" press="onAcceptPress1" />
+                </buttons>
+                    
+                <NotificationListItem
+                
+                    title="{user1/name}"
+                    description="Hai ! Admin i Need {book1/title} Book ISBN no {book1/ISBN} Written By {book1/author} "
+                    highlightText="{book1/Aquantity}"
+                    showCloseButton="false"
+                    datetime="{reservedDate}"
+                    unread="true"
+                    priority="Low"
+                    close="onItemClose1"
+                    press=".onListItemPress"
+                    authorInitials="{user1/name}"
+                    authorAvatarColor="Random">
+                    <buttons>
+                        <Button icon="sap-icon://accept" text="Accept"  press="onAcceptPress" />
+                    </buttons>
+                    <buttons>
+                        <Button icon="sap-icon://decline" text="Reject" type="Reject"  press="onCancleIssue" />
+
+                    </buttons>
+                </NotificationListItem>
+                
+            </NotificationListGroup>
+            
+            
+            
+        </NotificationList>
+       
+</ActionSheet>

@@ -17,14 +17,18 @@
         id="idBooksListPage"
         headerExpanded="true"
     >
+     
         <f:title>
-            <f:DynamicPageTitle id="idBooksListPageTitle">
-                <f:heading>
+            <f:DynamicPageTitle id="idBooksListPageTitle"  
+            >
+              <f:heading >
                     <Title
                         id="idBooksPageHeadingTitle"
                         text="{i18n>title}"
                     />
+                    
                 </f:heading>
+                
  
                 <f:expandedContent>
                     <Label
@@ -45,6 +49,31 @@
                     />
                 </f:snappedTitleOnMobile>
                 <f:navigationActions>
+                <Button
+                            id="idIssueBooksValue3"
+                             icon="sap-icon://bell"
+                            type="Transparent"
+                            press="onNotification"
+                            
+                        >
+                         <customData>
+						<BadgeCustomData
+                            class="badge"
+						
+							value="{/IssueBooks/$count}"
+							visible="true"
+                            />
+					</customData>
+                        </Button>
+
+
+                <Button
+    id="idBtnLogout"
+    icon="sap-icon://visits"
+    tooltip="Logout"
+    type="Reject"
+    press="onLogoutPress"
+/>
                     <!-- <Button
                         id="idBtnFullScreen"
                         icon="sap-icon://full-screen"
@@ -156,6 +185,33 @@
                             press="onActiveloans"
                         />
                     </VBox>
+                    <VBox
+                        id="idIssueBooksbox"
+                        class="sapUiSmallMarginEnd"
+                    >
+                        <Label
+                            id="idIssueBooks"
+                            text=""
+                        />
+                       
+                        <Button
+                            id="idIssueBooksValue"
+                            text="Issue Books "
+                            type="Emphasized"
+                            press="onIssueBooks"
+                            
+                        >
+                         <customData>
+						<BadgeCustomData
+							key="badge"
+							value="{/IssueBooks/$count}"
+							visible="true"/>
+					</customData>
+                        </Button>
+
+
+                        
+                    </VBox>
                 </HBox>
             </f:DynamicPageHeader>
         </f:header>
@@ -164,7 +220,9 @@
                 id="idBooksTable"
                 mode="SingleSelectMaster"
                 alternateRowColors="true"
-                items="{/Books}"
+                items="{path: '/Books', parameters : {
+                    $count : true
+                }}"
                 selectionChange="onSelectBook"
                 
             >
@@ -172,9 +230,17 @@
                     <OverflowToolbar id="idBooksTableHeader">
                         <Title
                             id="idTableHeaderTitle"
-                            text="Books"
+                            text="Books :{/Books/$count}"
                         />
                         <ToolbarSpacer id="idTableHeaderSpacer" />
+                         <Button
+                            id="idBtnedit"
+                            icon="sap-icon://edit"
+                            tooltip="Edit"
+                            type="Emphasized"
+                            press="onEditBtnPress"
+                            text="Edit"
+                        />
                         <Button
                             id="idBtnCreate"
                             icon="sap-icon://add"
@@ -190,6 +256,7 @@
                             type="Reject"
                             press="onDeleteBtnPress"
                             text="Delete"
+			                ariaHasPopup="Dialog"
                         />
                     </OverflowToolbar>
                 </headerToolbar>

@@ -1,7 +1,7 @@
-ID,name,username,password,usertype,bookloan_ID
-f852ea7d-6a4c-4aa4-b6c5-eb10f84d03d1,John Doe,johndoe,password123,member,3f31720c-87c8-4b2e-b2ff-3219af300589
-fd09e507-1090-4ae2-bd65-6791d5893457,Alice Smith,alicesmith,securepass,member,a45c9c9e-5bc2-4922-9d6c-91385b14ac89
-a45c9c9e-5bc2-4922-9d6c-91385b14ac8f,Michael Johnson,michaelj,password456,member,6dd6c93d-91ec-46fb-bc2f-64d3e50605fc
-f852ea7d-6a4c-4aa4-b6c5-eb10f84d03d2,Ram Ramesh,ramramesh,password123,admin,
-fd09e507-1090-4ae2-bd65-6791d5893458,Raj Rajesh,rajrajesh,securepass,admin,
-a45c9c9e-5bc2-4922-9d6c-91385b14ac88,Aruna Akula,arunaakula,password456,admin,
+ID,name,username,password,usertype
+f852ea7d-6a4c-4aa4-b6c5-eb10f84d03d1,John Doe,johndoe,password123,member
+fd09e507-1090-4ae2-bd65-6791d5893457,Alice Smith,alicesmith,securepass,member
+a45c9c9e-5bc2-4922-9d6c-91385b14ac8f,Michael Johnson,michaelj,password456,member
+f852ea7d-6a4c-4aa4-b6c5-eb10f84d03d2,Ram Ramesh,ramesh,password123,admin
+fd09e507-1090-4ae2-bd65-6791d5893458,Raj Rajesh,rajrajesh,securepass,member
+a45c9c9e-5bc2-4922-9d6c-91385b14ac88,Aruna Akula,arunaakula,password456,member

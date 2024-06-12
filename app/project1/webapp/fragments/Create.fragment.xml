@@ -54,6 +54,8 @@
                 <Input
                     id="idtitleInput"
                     value="{localModel>/title}"
+                    required="true"
+                    valueStateText="Title is required"
                 />
                 <Label
                     id="idAuthor"
@@ -62,6 +64,8 @@
                 <Input 
                     id="idAuthorInput"
                     value="{localModel>/author}"
+                    required="true"
+                    valueStateText="Author is required"
                 />
                 <Label
                     id="idISBNLabel"
@@ -70,6 +74,8 @@
                 <Input
                     id="idISBNInput"
                     value="{localModel>/ISBN}"
+                    required="true"
+                    valueStateText="ISBN is required"
                 />
                 <Label
                     id="idQuantity"
@@ -78,6 +84,8 @@
                 <Input 
                     id="idQuantityInput"
                     value="{localModel>/quantity}"
+                    required="true"
+                    valueStateText="Quantity is required"
                 />
              
             </form:SimpleForm>

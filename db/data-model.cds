@@ -10,17 +10,16 @@ entity Books : cuid {
   ISBN     : String;
   quantity : Integer;
   Aquantity : Integer;
-  bookloans : Composition of many bookloans on bookloans.book =$self;
+  bookloans : Composition of many Bookloans on bookloans.book =$self;
+  NotifyB : Composition of many Notify on NotifyB.BookDetails =$self;
 }
 
-entity bookloans : cuid {
-  userid     : UUID;
-  name        : String;
-  username   : String;
+entity Bookloans : cuid {
   issuedate  : Date;
   returndate : Date;
   book : Association to  one  Books;
-  users : Composition of many users on users.bookloan =$self;
+  user : Association to   one users;
+ 
 }
 
 entity users : cuid {
@@ -28,9 +27,28 @@ entity users : cuid {
   username : String;
   password : String;
   usertype : String;
-  bookloan : Association to one bookloans;
-
+  
+  bookloan : Association to many Bookloans on bookloan.user =$self;
+  issueBooks  : Association to many IssueBooks
+                  on issueBooks.user1 = $self;
+  NotifyU: Association to many Notify on NotifyU.UserDetails = $self;
 }
 
+entity IssueBooks : cuid {
+  book1         : Association to Books;
+  user1         : Association to users;
+  reservedDate : Date
+}
+
+
+entity Notify : cuid {
+  Notifytype : String;
+  time:String;
+  date:String;
+  priority:String;
+  BookDetails: Association to Books;
+  UserDetails : Association to users;
+  
+}
 
 

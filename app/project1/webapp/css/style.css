@@ -5,3 +5,34 @@
     background-position: center;
     height: 100vh;
 }
+
+.sapUiSmallMarginEnd1{
+    margin-left: 1000px;
+}
+.sapUiSmallMarginEnd2{
+    margin-left: 30px;
+}
+.sapUiSmallMarginEnd3{
+    margin-left: 30px;
+}
+
+.color{
+   text-decoration-color: red; 
+}
+.badge {
+    position: absolute;
+    top: -10px; /* Adjust this value to position the badge vertically */
+    right: -10px; /* Adjust this value to position the badge horizontally */
+    background-color: red; /* Badge background color */
+    color: white; /* Badge text color */
+    padding: 2px 5px; /* Padding inside the badge */
+    border-radius: 50%; /* Make the badge circular */
+    font-size: 12px; /* Adjust font size */
+    font-weight: bold; /* Make text bold */
+}
+
+.customPopoverContent {
+    width: 600px;
+    height: 200px;
+    overflow: auto; /* Optional: Add this to handle overflow content */
+}

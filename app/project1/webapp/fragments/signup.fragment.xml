@@ -56,7 +56,10 @@
                         placeholder="Enter Name"
                         width="100%"
                         textAlign="Initial"
-                        value="{localModel>/name}"
+                        value="{localModel1>/name}"
+                         required="true"
+                        valueState="None"
+                        valueStateText="Please enter your name"
                     />
  
                     <Label
@@ -70,13 +73,17 @@
                         placeholder="Enter Username"
                         width="100%"
                         textAlign="Initial"
-                        value="{localModel>/username}"
+                        value="{localModel1>/username}"
+                        required="true"
+                        valueState="None"
+                        valueStateText="Please enter your username"
                     />
 
                     <Label
                         class="userType"
                         text="User Type"
                         textAlign="Initial"
+                        visible="false"
                     />
                     <Input
                         class="input"
@@ -84,7 +91,8 @@
                         placeholder="Enter UserType"
                         width="100%"
                         textAlign="Initial"
-                        value="{localModel>/usertype}"
+                        visible="false"
+                        value="{localModel1>/usertype}"
                     />
  
  
@@ -99,10 +107,13 @@
                         placeholder="Enter Password"
                         width="100%"
                         textAlign="Initial"
-                        value="{localModel>/password}"
+                        value="{localModel1>/password}"
+                        required="true"
+                        valueState="None"
+                        valueStateText="Password must be at least 8 characters long"
                     />
  
-                    <!-- <Label
+                    <Label
                         class="confirmPassword"
                         text="Confirm Password"
                         textAlign="Initial"
@@ -115,7 +126,10 @@
                         width="100%"
                         textAlign="Initial"
                         value="{localModel>/confirmpassword}"
-                    /> -->
+                         required="true"
+                        valueState="None"
+                        valueStateText="Passwords must match"
+                    />
                     <core:Title />
                 </form:content>
             </form:SimpleForm>

@@ -29,32 +29,127 @@ sap.ui.define(
       onInit: function () {
         var oModel = new ODataModel("/v2/odata/v4/catalog/");
         this.getView().setModel(oModel);
-        const oLocalModel = new  sap.ui.model.json.JSONModel({
+        const oLocalModel1 = new  sap.ui.model.json.JSONModel({
           name : "",
           username: "",
           password: "",
-          // confirmpassword : "",
           usertype: "member",
          
         });
-        this.getView().setModel(oLocalModel, "localModel");
+        this.getView().setModel(oLocalModel1, "localModel1");
         this.getRouter().attachRoutePatternMatched(this.onBookListLoad, this);
       },
       
 
       onSignUp1: async function () {
+
+        var oNameInput = this.byId("Name");
+            var oUsernameInput = this.byId("user1");
+            var oPasswordInput = this.byId("password1");
+            var oConfirmPasswordInput = this.byId("confirmPassword");
+
+            // Get the input values
+            var sName = oNameInput.getValue();
+            var sUsername = oUsernameInput.getValue();
+            var sPassword = oPasswordInput.getValue();
+            var sConfirmPassword = oConfirmPasswordInput.getValue();
+
+            var bValid = true;
+
+            // Reset value states
+            oNameInput.setValueState("None");
+            oUsernameInput.setValueState("None");
+            oPasswordInput.setValueState("None");
+            oConfirmPasswordInput.setValueState("None");
+
+            // Validate name
+            if (!sName) {
+                oNameInput.setValueState("Error");
+                oNameInput.setValueStateText("Please enter your name");
+                bValid = false;
+            }
+
+            // Validate username
+            if (!sUsername) {
+                oUsernameInput.setValueState("Error");
+                oUsernameInput.setValueStateText("Please enter your username");
+                bValid = false;
+            }
+
+            // Validate password length
+            if (!sPassword) {
+                oPasswordInput.setValueState("Error");
+                oPasswordInput.setValueStateText("Please enter your password");
+                bValid = false;
+            } else if (sPassword.length < 8) {
+                oPasswordInput.setValueState("Error");
+                oPasswordInput.setValueStateText("Password must be at least 8 characters long");
+                bValid = false;
+            }
+
+            // Validate confirm password
+            if (!sConfirmPassword) {
+                oConfirmPasswordInput.setValueState("Error");
+                oConfirmPasswordInput.setValueStateText("Please confirm your password");
+                bValid = false;
+            } else if (sPassword !== sConfirmPassword) {
+                oConfirmPasswordInput.setValueState("Error");
+                oConfirmPasswordInput.setValueStateText("Passwords do not match");
+                bValid = false;
+            }
+
+
+            if (!bValid) {
+              MessageToast.show("Please correct the errors and try again.");
+              return;
+          }
+
+
+
+
+
         debugger
-        const oPayload = this.getView().getModel("localModel").getProperty("/"),
+        const oPayload = this.getView().getModel("localModel1").getProperty("/"),
             oModel = this.getView().getModel("ModelV2");
         try {
-            await this.createData(oModel, oPayload, "/users");
-            // this.getView().byId("idBooksTable").getBinding("items").refresh();
-            this.osignup.close();
-        } catch (error) {
-            this.osignup.close();
-            sap.m.MessageBox.error("Some technical Issue");
+        // Check if username exists
+        const aFilters = [
+            new Filter("username", FilterOperator.EQ, sUsername)
+        ];
+        
+        const aUsers = await this.readData(oModel, "/users", aFilters);
+        
+        if (aUsers.length > 0) {
+          var name1 = aUsers[0].name
+
+            MessageToast.show( name1 +"  Username already exists. Please choose a different username.");
+            return;
         }
-    },
+
+        // If username does not exist, create the user
+        await this.createData(oModel, oPayload, "/users");
+        // MessageToast.show(  `${sUsername} Account Created is Successfully Created`);
+        MessageToast.show(  sUsername + "  Account Created is Successfully Created");
+        this.osignup.close();
+    } catch (error) {
+        MessageToast.show("Some technical issue");
+    }
+},
+readData: function (oModel, sPath, aFilters) {
+  return new Promise((resolve, reject) => {
+      oModel.read(sPath, {
+          filters: aFilters,
+          success: function (oData) {
+              resolve(oData.results);
+          },
+          error: function (oError) {
+              reject(oError);
+          }
+      });
+  });
+},
+
+      
                
 
       onLogin: async function () {
@@ -85,6 +180,22 @@ sap.ui.define(
       },
 
       onCloseDialog3: function () {
+        var oNameInput = this.byId("Name");
+        var oUsernameInput = this.byId("user1");
+        var oPasswordInput = this.byId("password1");
+        var oConfirmPasswordInput = this.byId("confirmPassword");
+
+        oNameInput.setValue("");
+        oUsernameInput.setValue("");
+        oPasswordInput.setValue("");
+        oConfirmPasswordInput.setValue("");
+
+        // Reset value states
+        oNameInput.setValueState("None");
+        oUsernameInput.setValueState("None");
+        oPasswordInput.setValueState("None");
+        oConfirmPasswordInput.setValueState("None");
+
         if (this.osignup.isOpen()) {
           this.osignup.close();
         }
@@ -94,6 +205,29 @@ sap.ui.define(
       
 
       onSignin: function (eve) {
+
+        var oUsernameInput = this.byId("idUsernameInput");
+        var oPasswordInput = this.byId("idPasswordInput");
+
+        var sUsername = oUsernameInput.getValue();
+        var sPassword = oPasswordInput.getValue();
+
+        var bValid = true;
+
+        oUsernameInput.setValueState("None");
+        oPasswordInput.setValueState("None");
+
+        if (!sUsername) {
+          oUsernameInput.setValueState("Error");
+          bValid = false;
+      }
+
+      // Validate password
+      if (!sPassword) {
+          oPasswordInput.setValueState("Error");
+          bValid = false;
+      }
+
         
         debugger;
         var oView = this.getView();
@@ -113,14 +247,17 @@ sap.ui.define(
             if (oData.results.length > 0) {
               if (oData.results[0].usertype === "member") {
                 var userid = oData.results[0].ID;
-                MessageToast.show("Login successful!");
+                MessageToast.show(sUsername +"  Login successful!");
                 this.getOwnerComponent()
-                  .getRouter()
-                  .navTo("RouteUsers", { id: userid });
+                .getRouter()
+                .navTo("RouteUsers", { id: userid });
+                
               }
               if (oData.results[0].usertype === "admin") {
+                debugger
                 var userid = oData.results[0].ID;
-                MessageToast.show("Login successful!");
+                var username = oData.results[0].name;
+                MessageToast.show(sUsername + "  Login successful!");
                 this.getOwnerComponent()
                   .getRouter()
                   .navTo("routeNew");
@@ -136,6 +273,9 @@ sap.ui.define(
           },
         });
       },
+
+      
+    
 
       
     });

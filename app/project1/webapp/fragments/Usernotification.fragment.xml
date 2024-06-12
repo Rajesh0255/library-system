@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    class="sapUiBodyBackground sapContrastPlus"
+>
+    <Popover
+        id="myPopover"
+        title="Hi! {name}"
+        placement="PreferredLeftOrFlip"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer  customPopoverContent"
+    >
+        <NotificationList items="{path: 'NotifyU'}" >
+            <layoutData>
+                <FlexItemData
+                    maxWidth="800px"
+                    maxHeight="100px"
+                />
+            </layoutData>
+           
+			     
+                <NotificationListItem
+                
+                    title="Book Status"
+                    description="Your request to borrow the book '{BookDetails/title}' by{BookDetails/author} ISBN {BookDetails/ISBN}  has been {Notifytype}. "
+                    showCloseButton="true"
+                    unread="false"
+                    datetime="{date}"
+                    priority="{priority}"
+                    close="onItemClose"
+                    press=".onListItemPress"
+                    authorName="Admin"
+                    authorInitials="Admin"
+                    authorAvatarColor="Random"
+                    selected="true"
+                    
+                >
+<!--                  
+                    <buttons>
+                       
+                        <Button
+                            text="Reject"
+                            press=".onRejectPress"
+                            icon="sap-icon://sys-cancel"
+                        />
+                    </buttons> -->
+                </NotificationListItem>
+           
+        </NotificationList>
+        <!-- <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button
+                    id="Cancle"
+                    text="Cancle"
+                    press="handleEmailPress"
+                />
+            </OverflowToolbar>
+        </footer> -->
+    </Popover>
+</core:FragmentDefinition>
